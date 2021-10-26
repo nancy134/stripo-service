@@ -62,4 +62,22 @@ app.get('/emails/:id', (req, res) => {
     });
 });
 
+app.get('/export/html/emails/:id', (req, res) => {
+    stripoService.getEmailHTML(req.params.id).then(function(email){
+        res.json(email);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+app.get('/export/html/templates/:id', (req, res) => {
+    stripoService.getTemplateHTML(req.params.id).then(function(html){
+        res.json(html);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
 app.listen(PORT, HOST);
