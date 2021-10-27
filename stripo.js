@@ -133,6 +133,24 @@ exports.createEmail = function(body){
         axios(options).then(function(result){
             resolve(result.data);
         }).catch(function(err){
+            console.log(err);
+            reject(utilities.processAxiosError(err));
+        });
+    });
+}
+
+exports.getTemplate = function(id){
+    return new Promise(function(resolve, reject){
+        var url = "https://stripo.email/emailgeneration/v1/" + "/templates/" + id;
+        var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
+        var options = {
+            url: url,
+            method: 'GET',
+            headers: headers
+        };
+        axios(options).then(function(result){
+            resolve(result.data);
+        }).catch(function(err){
             reject(utilities.processAxiosError(err));
         });
     });

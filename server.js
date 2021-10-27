@@ -89,5 +89,13 @@ app.post('/emails', (req, res) => {
     });
 });
 
+app.get('/templates/:id', (req, res) => {
+    stripoService.getTemplate(req.params.id).then(function(template){
+        res.json(template);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
 
 app.listen(PORT, HOST);
