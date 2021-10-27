@@ -80,4 +80,13 @@ app.get('/export/html/templates/:id', (req, res) => {
     });
 });
 
+app.post('/emails', (req, res) => {
+    stripoService.createEmail().then(function(email){
+        res.json(email);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
 app.listen(PORT, HOST);

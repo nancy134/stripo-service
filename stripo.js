@@ -85,3 +85,55 @@ exports.getEmail = function(id){
         });
     });
 }
+
+exports.getEmailHTML = function(id){
+    return new Promise(function(resolve, reject){
+        var url = "https://stripo.email/emailgeneration/v1/" + "/export/html/emails/" + id;
+        var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
+        var options = {
+            url: url,
+            method: 'GET',
+            headers: headers
+        };
+        axios(options).then(function(result){
+            resolve(result.data);
+        }).catch(function(err){
+            reject(utilities.processAxiosError(err));
+        });
+    });
+}
+
+exports.getTemplateHTML = function(id){
+    return new Promise(function(resolve, reject){
+        var url = "https://stripo.email/emailgeneration/v1/" + "/export/html/templates/" + id;
+        var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
+        var options = {
+            url: url,
+            method: 'GET',
+            headers: headers
+        };
+        axios(options).then(function(result){
+            resolve(result.data);
+        }).catch(function(err){
+            reject(utilities.processAxiosError(err));
+        });
+    });
+}
+
+exports.createEmail = function(body){
+    return new Promise(function(resolve, reject){
+        var url = "https://stripo.email/emailgeneration/v1/" + "/emails";
+        var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
+        var options = {
+            url: url,
+            method: 'POST',
+            headers: headers,
+            data: body
+        };
+        axios(options).then(function(result){
+            resolve(result.data);
+        }).catch(function(err){
+            reject(utilities.processAxiosError(err));
+        });
+    });
+}
