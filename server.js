@@ -98,4 +98,42 @@ app.get('/templates/:id', (req, res) => {
     });
 });
 
+app.post('/srt', (req, res) => {
+    stripoService.createSRT(req.body).then(function(srt){
+        res.json(srt);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+app.delete('/emails/:id', (req, res) => {
+    stripoService.deleteEmail(req.params.id).then(function(email){
+        res.json(email);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+app.get('/srt', (req, res) => {
+    stripoService.getSRT(req.query).then(function(srt){
+        res.json(srt);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+app.delete('/srt', (req, res) => {
+    stripoService.deleteSRT(req.query).then(function(srt){
+        res.json(srt);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+
+
 app.listen(PORT, HOST);
