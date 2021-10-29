@@ -69,22 +69,23 @@ exports.getSRTNames = function(){
     });
 }
 
-exports.getEmail = function(id){
-    return new Promise(function(resolve, reject){
-        var url = "https://stripo.email/emailgeneration/v1/" + "/emails/" + id;
-        var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
-        var options = {
-            url: url,
-            method: 'GET',
-            headers: headers
-        };
-        axios(options).then(function(result){
-            resolve(result.data);
-        }).catch(function(err){
-            reject(utilities.processAxiosError(err));
-        });
-    });
-}
+// DELETED PER NANCY 10-29-21
+//exports.getEmail = function(id){
+//    return new Promise(function(resolve, reject){
+//        var url = "https://stripo.email/emailgeneration/v1/" + "/emails/" + id;
+//        var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
+//        var options = {
+//            url: url,
+//            method: 'GET',
+//            headers: headers
+//        };
+//        axios(options).then(function(result){
+//            resolve(result.data);
+//        }).catch(function(err){
+//            reject(utilities.processAxiosError(err));
+//        });
+//    });
+//}
 
 exports.getEmailHTML = function(id){
     return new Promise(function(resolve, reject){
@@ -122,7 +123,8 @@ exports.getTemplateHTML = function(id){
 
 exports.createEmail = function(body){
     return new Promise(function(resolve, reject){
-        var url = "https://stripo.email/emailgeneration/v1/" + "/emails";
+        //UPDATED PER NANCY 10-29-21
+        var url = "https://stripo.email/emailgeneration/v1/" + "/email";
         var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
         var options = {
             url: url,
@@ -139,22 +141,23 @@ exports.createEmail = function(body){
     });
 }
 
-exports.getTemplate = function(id){
-    return new Promise(function(resolve, reject){
-        var url = "https://stripo.email/emailgeneration/v1/" + "/templates/" + id;
-        var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
-        var options = {
-            url: url,
-            method: 'GET',
-            headers: headers
-        };
-        axios(options).then(function(result){
-            resolve(result.data);
-        }).catch(function(err){
-            reject(utilities.processAxiosError(err));
-        });
-    });
-}
+//DELETED PER NANCY 10-29-21
+//exports.getTemplate = function(id){
+//    return new Promise(function(resolve, reject){
+//        var url = "https://stripo.email/emailgeneration/v1/" + "/templates/" + id;
+//        var headers = utilities.createHeaders(process.env.STRIPO_AUTH_TOKEN);
+//        var options = {
+//            url: url,
+//            method: 'GET',
+//           headers: headers
+//        };
+//        axios(options).then(function(result){
+//            resolve(result.data);
+//        }).catch(function(err){
+//            reject(utilities.processAxiosError(err));
+//        });
+//    });
+//}
 
 exports.createSRT = function(body){
     return new Promise(function(resolve, reject){

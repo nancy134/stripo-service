@@ -35,14 +35,16 @@ app.get('/validate', (req, res) => {
     });
 });
 
-app.get('/templates', (req, res) => {
-    stripoService.getTemplates().then(function(templates){
-        res.json(templates);
-    }).catch(function(err){
-        console.log(err);
-        res.status(400).json(err);
-    });
-});
+
+//DELETED PER NANCY 10-29-21
+//app.get('/templates', (req, res) => {
+//    stripoService.getTemplates().then(function(templates){
+//       res.json(templates);
+//   }).catch(function(err){
+//      console.log(err);
+//       res.status(400).json(err);
+//   });
+//});
 
 app.get('/srtnames', (req, res) => {
     stripoService.getSRTNames().then(function(srtnames){
@@ -53,14 +55,15 @@ app.get('/srtnames', (req, res) => {
     });
 });
 
-app.get('/emails/:id', (req, res) => {
-    stripoService.getEmail(req.params.id).then(function(email){
-        res.json(email);
-    }).catch(function(err){
-        console.log(err);
-        res.status(400).json(err);
-    });
-});
+// DELETED PER NANCY 10-29-21
+//app.get('/emails/:id', (req, res) => {
+//    stripoService.getEmail(req.params.id).then(function(email){
+//        res.json(email);
+//    }).catch(function(err){
+//        console.log(err);
+//        res.status(400).json(err);
+//    });
+//});
 
 app.get('/export/html/emails/:id', (req, res) => {
     stripoService.getEmailHTML(req.params.id).then(function(email){
@@ -80,7 +83,8 @@ app.get('/export/html/templates/:id', (req, res) => {
     });
 });
 
-app.post('/emails', (req, res) => {
+//UPDATED PER NANCY 10-29-21
+app.post('/email', (req, res) => {
     stripoService.createEmail(req.body).then(function(email){
         res.json(email);
     }).catch(function(err){
@@ -112,7 +116,7 @@ app.delete('/emails/:id', (req, res) => {
         res.json(email);
     }).catch(function(err){
         console.log(err);
-        res.status(400).json(err);
+       res.status(400).json(err);
     });
 });
 
@@ -134,6 +138,14 @@ app.delete('/srt', (req, res) => {
     });
 });
 
-
+//ADDED PER NANCY 10-29-21
+app.delete('/templates/:id', (req, res) => {
+    stripoService.deleteEmail(req.params.id).then(function(templates){
+        res.json(templates);
+    }).catch(function(err){
+        console.log(err);
+       res.status(400).json(err);
+    });
+});
 
 app.listen(PORT, HOST);
